@@ -19,6 +19,7 @@
           <span class="display"></span>
           <span>Display</span>
         </button>
+
 </div>
 </body>
   </div>
@@ -32,6 +33,10 @@ import axios from "axios";
 import Vue from "vue";
 import VueSwal from "vue-swal";
 import ToggleButton from "vue-js-toggle-button";
+
+import AudioVisual from 'vue-audio-visual'
+
+Vue.use(AudioVisual)
 
 Vue.use(VueSwal);
 Vue.use(ToggleButton);
@@ -56,8 +61,8 @@ export default {
   },
 
   mounted: function() {
-     this.displayImage();
      this.timer = setInterval(this.displayImage, 5000)
+     this.timer1 = setInterval(this.playMusic, 15000)
      axiosStyle({
           url: "/get-image",
           method: "GET",
@@ -68,6 +73,10 @@ export default {
           this.isData = true;
           this.imageData = response.data
         });
+        // var audio = new Audio(require('../assets/m.mp3'));
+        // audio.play();
+
+
   },
   methods: {
     clearCanvas() {
@@ -87,7 +96,23 @@ export default {
           this.isData = true;
           this.imageData = response.data
         });
+
+    },
+     playMusic(){
+      axiosStyle({
+          url: "/play-music",
+          method: "POST",
+          headers: {
+            "Content-Type": "multipart/form-data"
+          }
+        }).then(response => {
+          console.log("music played")
+        }).catch((err) => {
+          console.log("music stopped")
+        });
     }
+
+
   }
 };
 </script>

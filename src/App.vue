@@ -36,9 +36,6 @@
     </a>
 
     <div class="spacer"></div>
-    <footer>
-      Made with ❤ by Fing
-    </footer>
   </div>
 </template>
 
