@@ -8,8 +8,8 @@
       <div class="section">
         <h3>Draw your sketch here</h3>
         <div class="canvas-wrapper">
-          <drawing-board ref="canvas"
-                         :enabled="!userContent"></drawing-board>
+          <drawing-board class = "drawing-board" ref="canvas"
+                         :enabled="!userContent" width='600' height = '600'></drawing-board>
         </div>
         <form id="upload-file"
               method="post"
@@ -463,7 +463,7 @@ export default {
 .section {
   margin: 0.5rem 1rem;
   flex-grow: 1;
-  width: 35%;
+  width: 50%;
 }
 
 .section .options .vue-js-switch {
@@ -474,10 +474,13 @@ export default {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  max-width: 400px;
+  max-width: 1000px;
   margin: 0 auto;
 }
 
+.drawing-board {
+  max-width: 720px;
+}
 .image-container .image-item {
   width: 25%;
   margin: 3px;
@@ -501,8 +504,8 @@ img.selected {
 }
 
 .result-container {
-  min-width: 200px;
-  min-height: 200px;
+  min-width: 1000px;
+  min-height: 1000px;
   border: 1px solid #ddd;
   border-radius: 4px;
   background-color: #ffffff;
@@ -554,16 +557,19 @@ img.selected {
 
   .section {
     margin: 0;
-    width: 100%;
+    width: 800px;
+    height: 800px;
   }
 
   .canvas-wrapper {
-    max-height: 500px;
+    max-height: 1000px;
+    height: 800px;
+    width: 800px;
   }
 }
 
 .canvas-wrapper {
-  max-height: 400px;
+  max-height: 1000px;
   height: auto;
   padding: 10px;
 }

@@ -20,7 +20,7 @@ from PIL import Image
 from flask import Flask, redirect, url_for, request, render_template, Response, send_file, make_response
 from gevent.pywsgi import WSGIServer
 from flask_cors import CORS
-from img2midi import convert
+from img2midi import convert, call_create_midi, call_play_midi
 
 app = Flask(__name__)
 CORS(app)
@@ -100,11 +100,18 @@ def get_image():
             return u"data:image/png;base64," + base64.b64encode(f.read()).decode('ascii')
     return ''
 
+@app.route('/create-music', methods=['POST'])
+def create_music():
+    counter = str(int(open("counter").read()) - 1)
+    if os.path.exists('./output/style/generated_image'+counter+'.png'):
+        call_create_midi('./output/style/generated_image'+counter+'.png', './output/audio/generated_midi'+counter+'.midi')
+    return ''
+
 @app.route('/play-music', methods=['POST'])
 def play_music():
     counter = str(int(open("counter").read()) - 1)
     if os.path.exists('./output/style/generated_image'+counter+'.png'):
-        convert('./output/style/generated_image'+counter+'.png', './output/audio/generated_midi'+counter+'.midi', True)
+        call_play_midi('./output/audio/generated_midi'+counter+'.midi')
     return ''
 
 @app.route('/submit-to-gallery', methods=['GET', 'POST'])

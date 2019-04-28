@@ -76,6 +76,20 @@ def convert(img_file, midi_file, play):
       pygame.mixer.music.fadeout(1000)
       pygame.mixer.music.stop()
       raise SystemExit
+def call_create_midi(img_file, midi_file):
+  pygame.init()
+  data = get_song_data(img_file)
+  song = create_midi(240, data)
+  with open(midi_file, 'wb') as f:
+    song.writeFile(f)
+
+def call_play_midi(midi_file):
+  try:
+    play_midi(midi_file)
+  except KeyboardInterrupt:
+    pygame.mixer.music.fadeout(1000)
+    pygame.mixer.music.stop()
+    raise SystemExit
 
 
 if __name__ == '__main__':
