@@ -21,7 +21,7 @@
         </button>
 
 <button class="btn"
-                @click="playMusic">
+           @click="playMusic">
           <span class="play"></span>
           <span>Play</span>
         </button>
@@ -40,7 +40,6 @@
 </body>
   </div>
 </template>
-
 <script>
 
 import DrawingBoard from "./DrawingBoard.vue";
@@ -49,7 +48,7 @@ import axios from "axios";
 import Vue from "vue";
 import VueSwal from "vue-swal";
 import ToggleButton from "vue-js-toggle-button";
-
+import * as mm from '@magenta/music';
 import AudioVisual from 'vue-audio-visual'
 
 Vue.use(AudioVisual)
@@ -61,6 +60,7 @@ const axiosStyle =
   process.env.NODE_ENV === "development"
     ? axios.create({ baseURL: "http://localhost:5002" })
     : axios.create({ baseURL: "https://dip.imfing.com/style" });
+
 
 export default {
   name: "ImageDisplay",
@@ -75,7 +75,9 @@ export default {
       displayButton: false,
       play: false,
       modalContent: "Waiting for a few seconds...",
-      showWaitModal: false
+      showWaitModal: false,
+      music_vae: null,
+      vaePlayer: null
     };
   },
 
@@ -93,8 +95,9 @@ export default {
           this.isData = true;
           this.imageData = response.data
         });
-        // var audio = new Audio(require('../assets/m.mp3'));
-        // audio.play();
+        /*var audio = new Audio(require('../../server/m.mp3'));
+        audio.play();*/
+        this.setupMusicVAE();
 
 
   },
@@ -128,26 +131,56 @@ export default {
             "Content-Type": "multipart/form-data"
           }
         }).then(response => {
-          this.showWaitModal = false
+          this.showWaitModal = false;
+          this.playInterpolation();
           console.log("music created")
         }).catch((err) => {
           console.log("music stopped")
         });
+    },
 
-      axiosStyle({
-          url: "/play-music",
-          method: "POST",
-          headers: {
-            "Content-Type": "multipart/form-data"
-          }
-        }).then(response => {
-          console.log("music played")
-        }).catch((err) => {
-          console.log("music stopped")
-        });
+    setupMusicVAE() {
+      // Initialize model.
+      this.music_vae = new mm.MusicVAE('https://storage.googleapis.com/magentadata/js/checkpoints/music_vae/mel_2bar_small');
+      this.music_vae.initialize();
+
+      // Create a player to play the sampled sequence.
+      this.vaePlayer = new mm.Player();
+    },
+    playVAE(event) {
+      if (this.vaePlayer.isPlaying()) {
+        this.vaePlayer.stop();
+        event.target.textContent = 'Play';
+        return;
+      } else {
+        event.target.textContent = 'Stop';
+      }
+      this.music_vae
+      .sample(1, 1.5)
+      .then((sample) => this.vaePlayer.start(sample[0]));
+    },
+
+    async playInterpolation() {
+      if (this.vaePlayer.isPlaying()) {
+        vaePlayer.stop();
+        this.return;
+      }
+      // Music VAE requires quantized melodies, so quantize them first.
+      console.log("BEFORE")
+      const twi = await mm.urlToNoteSequence("static/generated.midi");
+      console.log("comes----")
+      const abc = await mm.urlToNoteSequence("static/standard.mid");
+      console.log(twi);
+      const star = await mm.sequences.quantizeNoteSequence(twi, 2);
+      const teapot = await mm.sequences.quantizeNoteSequence(abc, 2);
+
+      this.music_vae
+      .interpolate([star, teapot], 5)
+      .then((sample) => {
+                        this.vaePlayer.start(sample[3])
+                    });
+      console.log("Played");
     }
-
-
   }
 };
 </script>

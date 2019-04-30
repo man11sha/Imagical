@@ -155,7 +155,10 @@ export default {
         { id: "6", src: require("@/assets/thumbs/6.jpg") },
         { id: "7", src: require("@/assets/thumbs/7.jpg") },
         { id: "8", src: require("@/assets/thumbs/8.jpg") },
-        { id: "9", src: require("@/assets/thumbs/9.jpg") }
+        { id: "9", src: require("@/assets/thumbs/9.jpg") },
+        { id: "10", src: require("@/assets/thumbs/10.jpg") },
+        { id: "11", src: require("@/assets/thumbs/11.jpg") },
+        { id: "12", src: require("@/assets/thumbs/12.jpg") }
       ],
       selectedId: 1,
       sessionId: "",

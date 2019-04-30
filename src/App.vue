@@ -12,7 +12,7 @@
     <router-view/>
 
     <!-- github corner -->
-    <a href="https://github.com/mtobeiyf/sketch-to-art"
+    <a href="https://github.com/man11sha/Imagical"
        target="_blank"
        class="github-corner"
        aria-label="View source on Github">
