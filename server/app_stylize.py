@@ -21,7 +21,6 @@ from flask import Flask, redirect, url_for, request, render_template, Response, 
 from gevent.pywsgi import WSGIServer
 from flask_cors import CORS
 from img2midi import convert, call_create_midi, call_play_midi
-
 app = Flask(__name__)
 CORS(app)
 
@@ -51,7 +50,7 @@ def stylize_with_data():
         style_out = './output/style/generated_image'+counter+'.png'
         open("counter","w").write(str(int(counter)+1))
         # style_out = './output/style/'+sessionId+'.png'
-
+        open("style", "w").write(styleId)
         if userContent == 'true':
             content_path = './uploads/'+sessionId+'.png'
             image_data = re.sub('^data:image/.+;base64,', '', contentData)
@@ -102,9 +101,14 @@ def get_image():
 
 @app.route('/create-music', methods=['POST'])
 def create_music():
+    style = str(int(open("style").read()))
     counter = str(int(open("counter").read()) - 1)
+    print("chosen style is::",style)
     if os.path.exists('./output/style/generated_image'+counter+'.png'):
-        call_create_midi('./output/style/generated_image'+counter+'.png', './output/audio/generated_midi'+counter+'.midi')
+        if not os.path.exists('./output/audio/generated_midi' + counter + '.midi'):
+            print("file doesn't exist")
+            call_create_midi('./output/style/generated_image'+counter+'.png', './output/audio/generated_midi'+counter+'.midi', '../static/generated.midi')
+        shutil.copy('./output/style_audio/' + style + '.mid', '../static/standard.mid', )
     return ''
 
 @app.route('/play-music', methods=['POST'])
@@ -113,6 +117,7 @@ def play_music():
     if os.path.exists('./output/style/generated_image'+counter+'.png'):
         call_play_midi('./output/audio/generated_midi'+counter+'.midi')
     return ''
+
 
 @app.route('/submit-to-gallery', methods=['GET', 'POST'])
 def submit_to_gallery():
