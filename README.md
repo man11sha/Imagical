@@ -1,11 +1,18 @@
 ## Python packages to be installed
 tensorflow
+
 keras
+
 pillow
+
 flask
+
 gevent
+
 magenta
+
 pygame
+
 nodejs
 
 ## Go to Imagical/server/models
