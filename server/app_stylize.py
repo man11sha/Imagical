@@ -108,7 +108,10 @@ def create_music():
         if not os.path.exists('./output/audio/generated_midi' + counter + '.midi'):
             print("file doesn't exist")
             call_create_midi('./output/style/generated_image'+counter+'.png', './output/audio/generated_midi'+counter+'.midi', '../static/generated.midi')
-        shutil.copy('./output/style_audio/' + style + '.mid', '../static/standard.mid', )
+        else:
+            print("midi file already exists")
+        shutil.copy('./style_audio/' + style + '.mid', '../static/standard.mid', )
+        print("midi file copied to static folder")
     return ''
 
 @app.route('/play-music', methods=['POST'])
