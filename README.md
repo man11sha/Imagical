@@ -19,7 +19,7 @@ python app_pix.py
 
 python app_stylize.py
 
-## Go to project main directory i.e., Imagical and perform the following set of commands:
+## Go to project main directory Imagical/ and perform the following set of commands:
 
 npm install
 
