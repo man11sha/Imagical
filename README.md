@@ -1,21 +1,14 @@
-## Python packages to be installed
-tensorflow
+## Python packages to be installed:
+tensorflow</br>
+keras</br>
+pillow</br>
+flask</br>
+gevent</br>
+magenta</br>
+pygame</br>
+nodejs</br>
 
-keras
-
-pillow
-
-flask
-
-gevent
-
-magenta
-
-pygame
-
-nodejs
-
-## Go to Imagical/server/models
+## Go to Imagical/server/models:
 
 Run download_models.sh to download all the pretrained models
 
@@ -51,6 +44,6 @@ Final Project of Art and ML Course (10615)
 
 <a href="https://vuejs.org/">Vue.js</a>
 
-## Authors
+## Authors:
 
 Manisha Chaurasia, Simral Chaudhary, Piyusha Sane
