@@ -40,9 +40,9 @@ Final Project of Art and ML Course 10615
 
 [Neural-Style-Transfer-Papers](https://github.com/ycjing/Neural-Style-Transfer-Papers)
 
-[Magenta-MusicVAE] (https://github.com/tensorflow/magenta/tree/master/magenta/models/music_vae)
+<a href="https://github.com/tensorflow/magenta/tree/master/magenta/models/music_vae">Magenta-MusicVAE</a>
 
-[Vue.js](https://vuejs.org/)
+[Vue.js](https://vuejs.org/) 
 
 ## Authors
 
