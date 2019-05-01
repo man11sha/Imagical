@@ -30,7 +30,7 @@ npm install file-saver
 npm run dev
 
 ## Acknowledgements:
-Final Project of Art and ML Course 10615
+Final Project of Art and ML Course (10615)
 
 <a href="https://github.com/eridgd/WCT-TF">WCT-TF</a>
 
