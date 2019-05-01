@@ -32,17 +32,17 @@ npm run dev
 ## Acknowledgements:
 Final Project of Art and ML Course 10615
 
-[WCT-TF](https://github.com/eridgd/WCT-TF)
+<a href="https://github.com/eridgd/WCT-TF">WCT-TF</a>
 
-[pix2pix-tensorflow](https://github.com/affinelayer/pix2pix-tensorflow)
+<a href="https://github.com/affinelayer/pix2pix-tensorflow">pix2pix-tensorflow</a>
 
-[pytorch-CycleGAN-and-pix2pix](https://github.com/junyanz/pytorch-CycleGAN-and-pix2pix)
+<a href="https://github.com/junyanz/pytorch-CycleGAN-and-pix2pix">pytorch-CycleGAN-and-pix2pix</a>
 
-[Neural-Style-Transfer-Papers](https://github.com/ycjing/Neural-Style-Transfer-Papers)
+<a href="https://github.com/ycjing/Neural-Style-Transfer-Papers">Neural-Style-Transfer-Papers</a>
 
 <a href="https://github.com/tensorflow/magenta/tree/master/magenta/models/music_vae">Magenta-MusicVAE</a>
 
-[Vue.js](https://vuejs.org/) 
+<a href="https://vuejs.org/">Vue.js</a>
 
 ## Authors
 
