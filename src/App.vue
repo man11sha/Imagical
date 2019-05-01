@@ -63,6 +63,7 @@ export default {
 
 .spacer {
   flex: 1;
+  background-color:powderblue;
 }
 
 header {
@@ -76,7 +77,7 @@ header {
 
 body {
   margin: 0;
-  background-color: #eee;
+  background-color: #efefef;
 }
 
 .github-corner:hover .octo-arm {
