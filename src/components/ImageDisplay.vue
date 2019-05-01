@@ -2,11 +2,11 @@
 <div id="wrapper" style="color:darkblue; background-color: powderblue;">
   <body style="color:darkblue; background-color: powderblue;">
   <div id="app">
-<h1> Your generated art</h1>
+<h1> What a Masterpiece!</h1>
     <div id="imgBody">
 <img v-if="imageData" class="image-container"
                :src="imageData"
-               alt="" height='500px' width = '500px' align='middle'/>
+               alt="" />
       </div>
 
 <button v-if="displayButton" class="btn"
@@ -108,7 +108,6 @@ export default {
           },
 
     displayImage(){
-      console.log("hello")
       axiosStyle({
           url: "/get-image",
           method: "GET",
@@ -152,8 +151,6 @@ export default {
         this.vaePlayer.stop();
         event.target.textContent = 'Play';
         return;
-      } else {
-        event.target.textContent = 'Stop';
       }
       this.music_vae
       .sample(1, 1.5)
@@ -166,20 +163,19 @@ export default {
         this.return;
       }
       // Music VAE requires quantized melodies, so quantize them first.
-      console.log("BEFORE")
       const twi = await mm.urlToNoteSequence("static/generated.midi");
-      console.log("comes----")
       const abc = await mm.urlToNoteSequence("static/standard.mid");
-      console.log(twi);
+      console.log("Note sequences produced");
       const star = await mm.sequences.quantizeNoteSequence(twi, 2);
       const teapot = await mm.sequences.quantizeNoteSequence(abc, 2);
 
       this.music_vae
       .interpolate([star, teapot], 5)
       .then((sample) => {
-                        this.vaePlayer.start(sample[3])
-                    });
+            this.vaePlayer.start(sample[3])
+           });
       console.log("Played");
+
     }
   }
 };
@@ -192,6 +188,10 @@ export default {
   color: white;
   padding: 0.5em 1em;
   margin: 0.5em;
+  margin-left: 45%;
+  margin-top:20px;
+  width: 120px;
+
   font-size: 1rem;
   font-family: inherit;
   font-weight: 400;
@@ -239,8 +239,10 @@ fieldset[disabled] .btn {
 
 .image-container {
   display: flex;
-  width:1500px;
-  height: 850px;
+  height: 750px;
+  width: 750px;
+  max-width:1500px;
+  max-height: 850px;
   justify-content: center;
   flex-wrap: wrap;
   margin: 0 auto;
@@ -251,7 +253,9 @@ fieldset[disabled] .btn {
 }
 
 .image-container .image-item {
-  width: 25%;
+  display: flex;
+  width: 100%;
+  height: 100%;
   margin: 3px;
   padding: 2px;
   border: 1px solid #ddd;
@@ -261,6 +265,7 @@ fieldset[disabled] .btn {
 }
 
 .image-container .image-item img {
+  display: flex;
   width: 100%;
   height: 100%;
   object-fit: cover;

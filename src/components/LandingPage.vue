@@ -2,7 +2,7 @@
   <div id="wrapper" style="color:darkblue; background-color: powderblue;">
   <body style="color:darkblue; background-color: powderblue;">
     <h1>
-      Welcome to Art Generation with Machine Learning
+      Imagical ~ Sketch your own music!
     </h1>
     <div class="container">
       <div class="section">
@@ -109,7 +109,7 @@
         {{ modalContent }}
       </div>
     </div>
-    <h3 v-if="resultReady">Results are ready</h3>
+    <!--<h3 v-if="resultReady">Results are ready</h3>-->
     </body>
   </div>
 </template>
@@ -127,12 +127,15 @@ Vue.use(ToggleButton);
 
 const axiosPix =
   process.env.NODE_ENV === "development"
+    //? axios.create({ baseURL: "http://128.237.198.219:5001" })
     ? axios.create({ baseURL: "http://localhost:5001" })
     : axios.create({ baseURL: "https://dip.imfing.com/pix" });
 
 const axiosStyle =
   process.env.NODE_ENV === "development"
     ? axios.create({ baseURL: "http://localhost:5002" })
+    //? axios.create({ baseURL: "http://128.237.198.219:5002" })
+
     : axios.create({ baseURL: "https://dip.imfing.com/style" });
 
 export default {
@@ -482,7 +485,8 @@ export default {
 }
 
 .drawing-board {
-  max-width: 720px;
+  display: flex;
+  max-width: 700px;
 }
 .image-container .image-item {
   width: 25%;
